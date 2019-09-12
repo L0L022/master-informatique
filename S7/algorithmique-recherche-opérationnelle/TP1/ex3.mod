@@ -4,7 +4,7 @@
 set H;
 /* Périodes */
 
-param np{i in H};
+#param np{i in H};
 
 param nam{i in H};
 /* Nombre d'agents minimum */
@@ -20,8 +20,8 @@ s.t. c1{i in H}: a[(i - 1) mod card(H)] + a[i] >= nam[i];
 
 solve;
 
-printf 'Le nombre d agents total = %f\n', nat;
-printf{i in H}:'Nombre d agents pour la période %s = %f\n', i, a[i]; 
+printf 'Le nombre d agents total = %i\n', nat;
+printf{i in H}:'Nombre d agents pour la période %s = %i\n', i, a[i]; 
 
 data;
 

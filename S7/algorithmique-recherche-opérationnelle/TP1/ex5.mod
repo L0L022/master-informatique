@@ -16,26 +16,20 @@ param cp{i in M};
 param te;
 /* Taille de l'entrepôt */
 
-param umm;
+param umm >= 0;
 /* Nombre d'unités minimum en stock chaque mois */
 
 param ui;
 /* Nombre d'unités initialement */
 
-var u{i in M} >= 0, integer;
+var u{i in M} >= 0, <= cp[i], integer;
 /* Nombre d'unités produites */
 
-var us{i in M} >= 0, integer;
+var us{i in M} >= umm, <= te, integer;
 /* Nombre d'unités en stock */
 
-minimize nut: sum{i in M} u[i] * cpu[i] + sum{i in 1..(card(M) - 1)} us[i] * 0.15 * cpu[i];
+minimize nut: sum{i in M} u[i] * cpu[i] + sum{i in 1..(card(M) - 1)} us[i] * 0.015 * cpu[i];
 /* le nombre d'unités totale */
-
-s.t. c1{i in M}: us[i] <= te;
-/* contrainte sur la taille de l'entrepôt */
-
-s.t. c2{i in M}: us[i] >= umm;
-/* contrainte sur le nombre d'unités minimum en stock */
 
 s.t. us_cntrnt{i in M}: us[i] = ui + sum{j in 1..i} (u[j] - d[j]);
 /* définition de us */

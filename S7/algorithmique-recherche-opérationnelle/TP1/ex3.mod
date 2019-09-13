@@ -4,8 +4,6 @@
 set H;
 /* Périodes */
 
-#param np{i in H};
-
 param nam{i in H};
 /* Nombre d'agents minimum */
 

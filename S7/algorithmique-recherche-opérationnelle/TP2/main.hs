@@ -18,8 +18,11 @@ main = do
 main' bag_size objects = do
     putStrLn $ "bag size = " ++ show bag_size ++ "\n" ++ show objects
     let objects' = sort_on_ratio objects
-        max_value = relax_frac objects' bag_size
-    putStrLn $ "max value = " ++ show max_value
+        max_value' = relax_frac objects' bag_size
+        objects'' = max_value objects' 0 bag_size []
+    putStrLn $ "max value = " ++ show max_value'
+    putStrLn $ "relax_frac = " ++ show objects'
+    putStrLn $ "max_value = " ++ show objects''
 
 sort_on_ratio :: [Object] -> [Object]
 sort_on_ratio = sortOn ratio
@@ -32,3 +35,12 @@ relax_frac [] _ = 0
 relax_frac _ bag_size
     | bag_size <= 0 = 0
 relax_frac (x:xs) bag_size = value x + relax_frac xs (bag_size - weight x)
+
+max_value :: [Object] -> Value -> Weight -> [Bool] -> (Weight, [Bool])
+max_value [] value' _ bag = (value', bag)
+max_value (o:os) value' bag_size bag =
+      if remaining >= 0 && fst with >= fst without then with else without
+    where remaining = bag_size - weight o
+          without = max_value os value' bag_size (False:bag)
+          with = max_value os (value' + value o) remaining (True:bag)
+

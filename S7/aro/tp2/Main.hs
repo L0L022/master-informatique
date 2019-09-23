@@ -1,27 +1,30 @@
+import System.Environment
 import System.IO
 import Data.List
 import Data.Tuple.Extra
 
 type Weight = Double
 type Value = Double
-data Object = Object {weight ::  Weight, value :: Value} deriving (Show)
+data Object = Object {index :: Int, weight ::  Weight, value :: Value} deriving (Show)
 
 main = do
-    withFile "sac4" ReadMode process
+    fileName <- head <$> getArgs
+    withFile fileName ReadMode process
     where process handle = do
             contents <- hGetContents handle
             let (bag_size:objects) = lines contents
                 bag_size' = read bag_size :: Weight
-                objects' = map (toObject.words) objects
+                objects' = map (\(i, ws) -> toObject i $ words ws) $ zip [1..] objects
             main' bag_size' objects'
-          toObject (w:v:[]) = Object (read w :: Weight) (read v :: Value)
+          toObject i (w:v:[]) = Object i (read w :: Weight) (read v :: Value)
 
 main' bag_size objects = do
     let objects' = sort_on_ratio objects
         max_value' = real_max_val objects' bag_size
-        objects'' = bb_max_val objects' bag_size
+        taken = bb_max_val objects' bag_size
+        indexes = map (index.snd) $ filter fst $ zip (snd taken) objects'
     putStrLn $ "real_max_val = " ++ show max_value'
-    putStrLn $ "bb_max_val = " ++ show objects''
+    putStrLn $ "bb_max_val = " ++ show indexes
 
 sort_on_ratio :: [Object] -> [Object]
 sort_on_ratio = reverse.sortOn ratio

@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 import System.Environment
 import System.IO
 import Data.List
@@ -18,7 +19,7 @@ main = do
             main' bag_size' objects'
           toObject i (w:v:[]) = Object i (read w :: Weight) (read v :: Value)
 
-main' bag_size objects = do
+main' bag_size !objects = do
     let objects' = sort_on_ratio objects
         max_value' = real_max_val objects' bag_size
         taken = bb_max_val objects' bag_size
@@ -30,17 +31,17 @@ sort_on_ratio :: [Object] -> [Object]
 sort_on_ratio = reverse.sortOn ratio
     where ratio x = value x / weight x
 
-greedy_max_val :: (Object -> Weight -> Value) -> [Object] -> Weight -> Value
-greedy_max_val _ [] _ = 0
-greedy_max_val othws (x:xs) bag_size
-    | bag_size >= weight x = value x + greedy_max_val othws xs (bag_size - weight x)
+greedy_max_val :: (Object -> Weight -> Value) -> Value -> [Object] -> Weight -> Value
+greedy_max_val _ v [] _ = v
+greedy_max_val othws v (x:xs) bag_size
+    | bag_size >= weight x = greedy_max_val othws (v + value x) xs (bag_size - weight x)
     | otherwise = othws x bag_size
 
 int_max_val :: [Object] -> Weight -> Value
-int_max_val = greedy_max_val $ \_ _ -> 0
+int_max_val = greedy_max_val (\_ _ -> 0) 0
 
 real_max_val :: [Object] -> Weight -> Value
-real_max_val = greedy_max_val $ \x bag_size -> (value x * bag_size) / weight x
+real_max_val = greedy_max_val (\x bag_size -> (value x * bag_size) / weight x) 0
 
 bb_max_val :: [Object] -> Weight -> (Weight, [Bool])
 bb_max_val objects bag_size = (v, reverse b)
@@ -48,7 +49,7 @@ bb_max_val objects bag_size = (v, reverse b)
 
 bb_max_val' :: [Object] -> Value -> Weight -> [Bool] -> Value -> (Weight, [Bool], Value)
 bb_max_val' os value' bag_size bag max_val
-  | max_val > v || bag_size < 0 = (0, [], 0)
+  | bag_size < 0 || max_val > v = (0, [], 0)
   | [] <- os = (value', bag, max value' max_val)
   where v = value' + real_max_val os bag_size
 bb_max_val' (o:os) value' bag_size bag max_val

@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant":{"owner":"m1reseaux","guestpath":"/vagrant","hostpath":"/amuhome/e16006130/git/master-informatique/S7/reseaux/tp2/vm1","disabled":false,"__vagrantfile":true},"/mnt/partage":{"create":true,"owner":"m1reseaux","guestpath":"/mnt/partage","hostpath":"/amuhome/e16006130/git/master-informatique/S7/reseaux/tp2/partage","disabled":false,"__vagrantfile":true}}}

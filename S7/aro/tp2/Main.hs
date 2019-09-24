@@ -26,17 +26,17 @@ main' bag_size !objects = do
         taken = bbMaxVal objects' bag_size
         indexes = map (index.snd) $ filter fst $ zip (snd taken) objects'
     putStrLn $ "realMaxVal = " ++ show max_value'
-    putStrLn $ "bbMaxVal = " ++ show indexes
+    putStrLn $ "bbMaxVal = " ++ show (fst taken, indexes)
 
 sortOnRatio :: [Object] -> [Object]
 sortOnRatio = sortOn (Data.Ord.Down . ratio)
     where ratio x = value x / weight x
 
 greedyMaxVal :: (Object -> Weight -> Value) -> Value -> [Object] -> Weight -> Value
-greedyMaxVal _ v [] _ = v
-greedyMaxVal othws v (x:xs) bag_size
+greedyMaxVal _ !v [] _ = v
+greedyMaxVal othws !v (x:xs) bag_size
     | bag_size >= weight x = greedyMaxVal othws (v + value x) xs (bag_size - weight x)
-    | otherwise = othws x bag_size
+    | otherwise = v + othws x bag_size
 
 intMaxVal :: [Object] -> Weight -> Value
 intMaxVal = greedyMaxVal (\_ _ -> 0) 0
@@ -57,3 +57,4 @@ bbMaxVal' (o:os) value' bag_size bag max_val
   = if fst3 with >= fst3 without then with else without
   where with = bbMaxVal' os (value' + value o) (bag_size - weight o) (True:bag) max_val
         without = bbMaxVal' os value' bag_size (False:bag) $ thd3 with
+

@@ -1,0 +1,127 @@
+No.     Time           Source                Destination           Protocol Length Info
+      1 0.000000000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=1, hop limit=64 (reply in 2)
+
+Frame 1: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_63:a3:dd (08:00:27:63:a3:dd), Dst: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      2 0.000686000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=1, hop limit=63 (request in 1)
+
+Frame 2: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b), Dst: CadmusCo_63:a3:dd (08:00:27:63:a3:dd)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      3 0.000068000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=1, hop limit=63 (reply in 4)
+
+Frame 3: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_17:9c:7e (08:00:27:17:9c:7e), Dst: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      4 0.000653000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=1, hop limit=64 (request in 3)
+
+Frame 4: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3), Dst: CadmusCo_17:9c:7e (08:00:27:17:9c:7e)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      5 1.001377000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=2, hop limit=64 (reply in 6)
+
+Frame 5: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_63:a3:dd (08:00:27:63:a3:dd), Dst: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      6 1.002104000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=2, hop limit=63 (request in 5)
+
+Frame 6: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b), Dst: CadmusCo_63:a3:dd (08:00:27:63:a3:dd)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      7 1.001413000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=2, hop limit=63 (reply in 8)
+
+Frame 7: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_17:9c:7e (08:00:27:17:9c:7e), Dst: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      8 1.002075000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=2, hop limit=64 (request in 7)
+
+Frame 8: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3), Dst: CadmusCo_17:9c:7e (08:00:27:17:9c:7e)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+      9 2.003157000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=3, hop limit=64 (reply in 10)
+
+Frame 9: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_63:a3:dd (08:00:27:63:a3:dd), Dst: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     10 2.003795000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=3, hop limit=63 (request in 9)
+
+Frame 10: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b), Dst: CadmusCo_63:a3:dd (08:00:27:63:a3:dd)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     11 2.003193000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=3, hop limit=63 (reply in 12)
+
+Frame 11: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_17:9c:7e (08:00:27:17:9c:7e), Dst: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     12 2.003772000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=3, hop limit=64 (request in 11)
+
+Frame 12: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3), Dst: CadmusCo_17:9c:7e (08:00:27:17:9c:7e)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     13 3.004968000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=4, hop limit=64 (reply in 14)
+
+Frame 13: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_63:a3:dd (08:00:27:63:a3:dd), Dst: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     14 3.005598000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=4, hop limit=63 (request in 13)
+
+Frame 14: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 0
+Ethernet II, Src: CadmusCo_8f:0d:5b (08:00:27:8f:0d:5b), Dst: CadmusCo_63:a3:dd (08:00:27:63:a3:dd)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     15 3.005001000    fc00:1234:1::1        fc00:1234:2::3        ICMPv6   118    Echo (ping) request id=0x0ada, seq=4, hop limit=63 (reply in 16)
+
+Frame 15: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_17:9c:7e (08:00:27:17:9c:7e), Dst: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3)
+Internet Protocol Version 6, Src: fc00:1234:1::1 (fc00:1234:1::1), Dst: fc00:1234:2::3 (fc00:1234:2::3)
+Internet Control Message Protocol v6
+
+No.     Time           Source                Destination           Protocol Length Info
+     16 3.005579000    fc00:1234:2::3        fc00:1234:1::1        ICMPv6   118    Echo (ping) reply id=0x0ada, seq=4, hop limit=64 (request in 15)
+
+Frame 16: 118 bytes on wire (944 bits), 118 bytes captured (944 bits) on interface 1
+Ethernet II, Src: CadmusCo_c8:f8:c3 (08:00:27:c8:f8:c3), Dst: CadmusCo_17:9c:7e (08:00:27:17:9c:7e)
+Internet Protocol Version 6, Src: fc00:1234:2::3 (fc00:1234:2::3), Dst: fc00:1234:1::1 (fc00:1234:1::1)
+Internet Control Message Protocol v6

@@ -6,7 +6,7 @@ import java.lang.Thread;
 import java.lang.Runtime;
 
 public class PiSurQuatre extends Thread {	
-    static long nbTirages = 5_000_000;          // Précision du calcul, fixée à 5 000 000	
+    static long nbTirages = 750_000_000;          // Précision du calcul, fixée à 5 000 000
     volatile long tiragesDansLeDisque = 0;      // Nb de tirages dans le disque pour chaque thread
     static int nbThreads = 4;                   // Nb de threads utilisés
     long part;

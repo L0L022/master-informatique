@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class PiSurQuatre {
     public static void main(String[] args) {
-        long nbTirages = 5_000_000;     // Précision du calcul, fixée à 5 000 000
+        long nbTirages = 750_000_000;     // Précision du calcul, fixée à 5 000 000
         long tiragesDansLeDisque = 0 ;
       
         if (args.length>0) {

@@ -2,28 +2,46 @@ package Mandelbrot;
 
 import java.awt.Color;
 
-public class Mandelbrot {
+public class MandelbrotStatic extends Thread {
     final static int taille = 500 ;   // nombre de pixels par ligne et par colonne
     final static Picture image = new Picture(taille, taille) ;
     // Il y a donc taille*taille pixels blancs ou gris à déterminer
-    final static int max = 100_000 ; 
+    final static int max = 87_000 ;
     // C'est le nombre maximum d'itérations pour déterminer la couleur d'un pixel
-    
-    public static void main(String[] args)  {
+
+    int _i, _taille;
+
+    public static void main(String[] args) throws InterruptedException {
+
+        MandelbrotStatic[] trs = new MandelbrotStatic[4];
+
         final long début = System.nanoTime() ;
 
-        for (int i = 0; i < taille; i++) {
-            for (int j = 0; j < taille; j++) {
-                colorierPixel(i,j) ;
-            }
-            // image.show();         // Pour visualiser l'évolution de l'image
+        for (int i = 0; i < 4; ++i) {
+            trs[i] = new MandelbrotStatic();
+            trs[i]._i = i * (taille / 4);
+            trs[i]._taille = taille / 4;
+            trs[i].start();
+        }
+
+        for (int i = 0; i < 4; ++i) {
+            trs[i].join();
         }
 
         final long fin = System.nanoTime() ;
         final long durée = (fin - début) / 1_000_000 ;
         System.out.println("Durée = " + (double) durée / 1000 + " s.") ;
         image.show() ;
-    }    
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < _taille; ++i) {
+            for (int j = 0; j < taille; j++) {
+                colorierPixel(_i + i, j);
+            }
+        }
+    }
 
     // La fonction colorierPixel(i,j) colorie le pixel (i,j) de l'image en gris ou blanc
     public static void colorierPixel(int i, int j) {

@@ -1,0 +1,28 @@
+root@vm3# netstat -alpe --ip -6
+Connexions Internet actives (serveurs et établies)
+Proto Recv-Q Send-Q Adresse locale          Adresse distante        Etat        User       Inode       PID/Program name
+tcp        0      0 *:echo                  *:*                     LISTEN      root       21833       3514/inetutils-inet
+tcp        0      0 *:sunrpc                *:*                     LISTEN      root       9728        409/rpcbind     
+tcp        0      0 *:ssh                   *:*                     LISTEN      root       21601       486/sshd        
+tcp        0      0 *:54102                 *:*                     LISTEN      statd      9838        418/rpc.statd   
+tcp6       0      0 [::]:sunrpc             [::]:*                  LISTEN      root       9731        409/rpcbind     
+tcp6       0      0 [::]:1234               [::]:*                  LISTEN      root       22203       3573/java       
+tcp6       0      0 [::]:ssh                [::]:*                  LISTEN      root       21603       486/sshd        
+tcp6       0      0 [::]:47261              [::]:*                  LISTEN      statd      9844        418/rpc.statd   
+tcp6       0      0 172.16.2.163:1234       172.16.2.131:43144      ESTABLISHED root       22839       3573/java       
+udp        0      0 *:1008                  *:*                                 root       9727        409/rpcbind     
+udp        0      0 *:21495                 *:*                                 root       18807       2205/dhclient   
+udp        0      0 targets:1018            *:*                                 root       9830        418/rpc.statd   
+udp        0      0 *:bootpc                *:*                                 root       21097       3282/dhclient   
+udp        0      0 *:bootpc                *:*                                 root       18880       2222/dhclient   
+udp        0      0 *:bootpc                *:*                                 root       18824       2205/dhclient   
+udp        0      0 *:sunrpc                *:*                                 root       9724        409/rpcbind     
+udp        0      0 *:12403                 *:*                                 root       21066       3282/dhclient   
+udp        0      0 *:45171                 *:*                                 root       18863       2222/dhclient   
+udp        0      0 *:41231                 *:*                                 statd      9835        418/rpc.statd   
+udp6       0      0 [::]:1008               [::]:*                              root       9730        409/rpcbind     
+udp6       0      0 [::]:55847              [::]:*                              statd      9841        418/rpc.statd   
+udp6       0      0 [::]:9314               [::]:*                              root       21067       3282/dhclient   
+udp6       0      0 [::]:sunrpc             [::]:*                              root       9729        409/rpcbind     
+udp6       0      0 [::]:45171              [::]:*                              root       18808       2205/dhclient   
+udp6       0      0 [::]:12100              [::]:*                              root       18864       2222/dhclient   

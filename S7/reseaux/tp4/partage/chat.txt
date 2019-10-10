@@ -1,0 +1,149 @@
+No.     Time           Source                Destination           Protocol Length Info
+      1 0.000000000    172.16.2.131          172.16.2.163          TCP      74     43145→1234 [SYN] Seq=0 Win=29200 Len=0 MSS=1460 SACK_PERM=1 TSval=1230188 TSecr=0 WS=128
+
+Frame 1: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 0, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+      2 0.000024000    172.16.2.163          172.16.2.131          TCP      74     1234→43145 [SYN, ACK] Seq=0 Ack=1 Win=28960 Len=0 MSS=1460 SACK_PERM=1 TSval=646724 TSecr=1230188 WS=128
+
+Frame 2: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Internet Protocol Version 4, Src: 172.16.2.163 (172.16.2.163), Dst: 172.16.2.131 (172.16.2.131)
+Transmission Control Protocol, Src Port: 1234 (1234), Dst Port: 43145 (43145), Seq: 0, Ack: 1, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+      3 0.000421000    172.16.2.131          172.16.2.163          TCP      66     43145→1234 [ACK] Seq=1 Ack=1 Win=29312 Len=0 TSval=1230188 TSecr=646724
+
+Frame 3: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 1, Ack: 1, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+      4 0.001415000    172.16.2.163          172.16.2.131          TCP      119    1234→43145 [PSH, ACK] Seq=1 Ack=1 Win=29056 Len=53 TSval=646724 TSecr=1230188
+
+Frame 4: 119 bytes on wire (952 bits), 119 bytes captured (952 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Internet Protocol Version 4, Src: 172.16.2.163 (172.16.2.163), Dst: 172.16.2.131 (172.16.2.131)
+Transmission Control Protocol, Src Port: 1234 (1234), Dst Port: 43145 (43145), Seq: 1, Ack: 1, Len: 53
+Data (53 bytes)
+
+0000  42 6f 6e 6a 6f 75 72 20 2f 31 37 32 2e 31 36 2e   Bonjour /172.16.
+0010  32 2e 31 33 31 21 20 28 76 6f 75 73 20 75 74 69   2.131! (vous uti
+0020  6c 69 73 65 7a 20 6c 65 20 70 6f 72 74 20 34 33   lisez le port 43
+0030  31 34 35 29 0a                                    145).
+
+No.     Time           Source                Destination           Protocol Length Info
+      5 0.001853000    172.16.2.131          172.16.2.163          TCP      66     43145→1234 [ACK] Seq=1 Ack=54 Win=29312 Len=0 TSval=1230189 TSecr=646724
+
+Frame 5: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 1, Ack: 54, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+      6 5.005042000    CadmusCo_70:3e:4b     CadmusCo_57:d3:91     ARP      60     Who has 172.16.2.163?  Tell 172.16.2.162
+
+Frame 6: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Address Resolution Protocol (request)
+
+No.     Time           Source                Destination           Protocol Length Info
+      7 5.005083000    CadmusCo_57:d3:91     CadmusCo_70:3e:4b     ARP      42     172.16.2.163 is at 08:00:27:57:d3:91
+
+Frame 7: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Address Resolution Protocol (reply)
+
+No.     Time           Source                Destination           Protocol Length Info
+      8 36.064112000   172.16.2.131          172.16.2.163          TCP      76     43145→1234 [PSH, ACK] Seq=1 Ack=54 Win=29312 Len=10 TSval=1239204 TSecr=646724
+
+Frame 8: 76 bytes on wire (608 bits), 76 bytes captured (608 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 1, Ack: 54, Len: 10
+Data (10 bytes)
+
+0000  62 6f 6e 6a 6f 75 72 20 21 0a                     bonjour !.
+
+No.     Time           Source                Destination           Protocol Length Info
+      9 36.064282000   172.16.2.163          172.16.2.131          TCP      66     1234→43145 [ACK] Seq=54 Ack=11 Win=29056 Len=0 TSval=655740 TSecr=1239204
+
+Frame 9: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Internet Protocol Version 4, Src: 172.16.2.163 (172.16.2.163), Dst: 172.16.2.131 (172.16.2.131)
+Transmission Control Protocol, Src Port: 1234 (1234), Dst Port: 43145 (43145), Seq: 54, Ack: 11, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+     10 36.065085000   172.16.2.163          172.16.2.131          TCP      78     1234→43145 [PSH, ACK] Seq=54 Ack=11 Win=29056 Len=12 TSval=655740 TSecr=1239204
+
+Frame 10: 78 bytes on wire (624 bits), 78 bytes captured (624 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Internet Protocol Version 4, Src: 172.16.2.163 (172.16.2.163), Dst: 172.16.2.131 (172.16.2.131)
+Transmission Control Protocol, Src Port: 1234 (1234), Dst Port: 43145 (43145), Seq: 54, Ack: 11, Len: 12
+Data (12 bytes)
+
+0000  3e 20 62 6f 6e 6a 6f 75 72 20 21 0a               > bonjour !.
+
+No.     Time           Source                Destination           Protocol Length Info
+     11 36.066279000   172.16.2.131          172.16.2.163          TCP      66     43145→1234 [ACK] Seq=11 Ack=66 Win=29312 Len=0 TSval=1239205 TSecr=655740
+
+Frame 11: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 11, Ack: 66, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+     12 41.069143000   CadmusCo_70:3e:4b     CadmusCo_57:d3:91     ARP      60     Who has 172.16.2.163?  Tell 172.16.2.162
+
+Frame 12: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Address Resolution Protocol (request)
+
+No.     Time           Source                Destination           Protocol Length Info
+     13 41.069181000   CadmusCo_57:d3:91     CadmusCo_70:3e:4b     ARP      42     172.16.2.163 is at 08:00:27:57:d3:91
+
+Frame 13: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Address Resolution Protocol (reply)
+
+No.     Time           Source                Destination           Protocol Length Info
+     14 89.806885000   172.16.2.131          172.16.2.163          TCP      66     43145→1234 [FIN, ACK] Seq=11 Ack=66 Win=29312 Len=0 TSval=1252640 TSecr=655740
+
+Frame 14: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 11, Ack: 66, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+     15 89.807697000   172.16.2.163          172.16.2.131          TCP      66     1234→43145 [FIN, ACK] Seq=66 Ack=12 Win=29056 Len=0 TSval=669176 TSecr=1252640
+
+Frame 15: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Internet Protocol Version 4, Src: 172.16.2.163 (172.16.2.163), Dst: 172.16.2.131 (172.16.2.131)
+Transmission Control Protocol, Src Port: 1234 (1234), Dst Port: 43145 (43145), Seq: 66, Ack: 12, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+     16 89.808767000   172.16.2.131          172.16.2.163          TCP      66     43145→1234 [ACK] Seq=12 Ack=67 Win=29312 Len=0 TSval=1252640 TSecr=669176
+
+Frame 16: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Internet Protocol Version 4, Src: 172.16.2.131 (172.16.2.131), Dst: 172.16.2.163 (172.16.2.163)
+Transmission Control Protocol, Src Port: 43145 (43145), Dst Port: 1234 (1234), Seq: 12, Ack: 67, Len: 0
+
+No.     Time           Source                Destination           Protocol Length Info
+     17 94.813099000   CadmusCo_70:3e:4b     CadmusCo_57:d3:91     ARP      60     Who has 172.16.2.163?  Tell 172.16.2.162
+
+Frame 17: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: CadmusCo_70:3e:4b (08:00:27:70:3e:4b), Dst: CadmusCo_57:d3:91 (08:00:27:57:d3:91)
+Address Resolution Protocol (request)
+
+No.     Time           Source                Destination           Protocol Length Info
+     18 94.813140000   CadmusCo_57:d3:91     CadmusCo_70:3e:4b     ARP      42     172.16.2.163 is at 08:00:27:57:d3:91
+
+Frame 18: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: CadmusCo_57:d3:91 (08:00:27:57:d3:91), Dst: CadmusCo_70:3e:4b (08:00:27:70:3e:4b)
+Address Resolution Protocol (reply)

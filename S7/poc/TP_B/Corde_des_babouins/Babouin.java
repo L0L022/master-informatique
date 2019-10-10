@@ -1,8 +1,5 @@
 // -*- coding: utf-8 -*-
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 enum Cote { EST, OUEST }                       // Le canyon possède un côté EST et un côté OUEST
 
 class Babouin extends Thread{
@@ -23,8 +20,10 @@ class Babouin extends Thread{
         System.out.println("Le babouin " + numéro +
                            " commence à traverser sur la corde en partant de l'" + origine + ".");
         try { sleep(5000); } catch(InterruptedException e){} // La traversée ne dure que 5 secondes
-        corde.lâcher(origine);                 // Arrivé de l'autre côté, le babouin lâche la corde
-        System.out.println("Le babouin " + numéro + " a lâché la corde et s'en va.");
+        synchronized (corde) {
+            corde.lâcher(origine);                 // Arrivé de l'autre côté, le babouin lâche la corde
+            System.out.println("Le babouin " + numéro + " a lâché la corde et s'en va.");
+        }
     }
     
     public static void main(String[] args){ 
@@ -41,12 +40,50 @@ class Babouin extends Thread{
 }
 
 class Corde {
+    final int maxOnTheRope = 5;
+    volatile int onTheRope = 0;
+    volatile int[] waitingTheRope = new int[Cote.values().length];
+    volatile int hasBeenOnTheRope = 0;
+    volatile Cote currentCote = Cote.EST;
 
-    Cote currentCote = Cote.EST;
+    public synchronized void saisir(Cote origine) {
+        ++waitingTheRope[origine.ordinal()];
 
-    public synchronized void saisir(Cote origine){
+        while (!(hasBeenOnTheRope < maxOnTheRope && onTheRope < maxOnTheRope && currentCote.equals(origine))) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        --waitingTheRope[origine.ordinal()];
+        ++onTheRope;
+        ++hasBeenOnTheRope;
     }
     
-    public synchronized void lâcher(Cote origine){
+    public synchronized void lâcher(Cote origine) {
+        assert(currentCote.equals(origine));
+        --onTheRope;
+
+        Cote otherSide = null;
+        switch (currentCote) {
+            case EST:
+                otherSide = Cote.OUEST;
+                break;
+            case OUEST:
+                otherSide = Cote.EST;
+                break;
+        }
+
+        if (onTheRope > 0)
+            return;
+
+        hasBeenOnTheRope = 0;
+
+        if (waitingTheRope[otherSide.ordinal()] > 0)
+            currentCote = otherSide;
+
+        notifyAll();
     }
 }

@@ -1,16 +1,6 @@
+#[macro_use] extern crate failure;
+#[macro_use] extern crate scan_fmt;
+
+pub mod problem;
+pub mod patterns;
 pub mod glpk;
-
-struct Initial {
-    width: u32,
-    something: f64,
-}
-
-struct Final {
-    count: u32,
-    width: u32,
-}
-
-struct Problem {
-    initials: Vec<Initial>,
-    finals: Vec<Final>,
-}

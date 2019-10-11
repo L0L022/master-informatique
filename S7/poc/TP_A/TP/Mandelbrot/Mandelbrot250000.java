@@ -1,26 +1,43 @@
 package Mandelbrot;
 
-import java.awt.Color;
+import java.awt.*;
 
-public class MandelbrotStatic extends Thread {
+public class Mandelbrot250000 extends Thread {
     final static int taille = 500 ;   // nombre de pixels par ligne et par colonne
     final static Picture image = new Picture(taille, taille) ;
     // Il y a donc taille*taille pixels blancs ou gris à déterminer
     final static int max = 100_000 ;
     // C'est le nombre maximum d'itérations pour déterminer la couleur d'un pixel
 
-    int _i, _taille;
+    static volatile boolean running = true;
+
+    int i, j;
 
     public static void main(String[] args) throws InterruptedException {
 
-        MandelbrotStatic[] trs = new MandelbrotStatic[4];
+        Mandelbrot250000[] trs = new Mandelbrot250000[250000];
+
+        Thread saveImages = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 1000 && running; ++i) {
+                    image.save("/tmp/pic" + String.format("%03d", i) + ".png");
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        //saveImages.start();
 
         final long début = System.nanoTime() ;
 
-        for (int i = 0; i < 4; ++i) {
-            trs[i] = new MandelbrotStatic();
-            trs[i]._i = i * (taille / 4);
-            trs[i]._taille = taille / 4;
+        for (int i = 0; i < 250000; ++i) {
+            trs[i] = new Mandelbrot250000();
+            trs[i].i = i % 500;
+            trs[i].j = i / 500;
             trs[i].start();
         }
 
@@ -28,19 +45,18 @@ public class MandelbrotStatic extends Thread {
             trs[i].join();
         }
 
+        running = false;
+
         final long fin = System.nanoTime() ;
         final long durée = (fin - début) / 1_000_000 ;
         System.out.println("Durée = " + (double) durée / 1000 + " s.") ;
         //image.show() ;
+        //saveImages.join();
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < _taille; ++i) {
-            for (int j = 0; j < taille; j++) {
-                colorierPixel(_i + i, j);
-            }
-        }
+        colorierPixel(i, j);
     }
 
     // La fonction colorierPixel(i,j) colorie le pixel (i,j) de l'image en gris ou blanc

@@ -2,6 +2,17 @@ extern crate bindgen;
 
 use std::env;
 use std::path::PathBuf;
+use bindgen::callbacks::ParseCallbacks;
+use bindgen::callbacks::IntKind;
+
+#[derive(Debug)]
+struct MyParseCallbacks;
+
+impl ParseCallbacks for MyParseCallbacks {
+    fn int_macro(&self, _name: &str, _value: i64) -> Option<IntKind> {
+        Some(IntKind::I32)
+    }
+}
 
 fn main() {
     // Tell cargo to tell rustc to link the system glpk
@@ -18,6 +29,7 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("wrapper.h")
+        .parse_callbacks(Box::new(MyParseCallbacks))
         .rustfmt_bindings(true)
         // Finish the builder and generate the bindings.
         .generate()

@@ -10,6 +10,7 @@ edition = "2018"
 libc = "0.2.62"
 failure = "0.1.5"
 scan_fmt = "0.2.4"
+structopt = "0.3.3"
 
 [build-dependencies]
 bindgen = "0.51.1"

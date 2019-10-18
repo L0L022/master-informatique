@@ -1,5 +1,6 @@
 // -*- coding: utf-8 -*-
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,8 +11,7 @@ public class TriRapide {
     static final int [] tableau = new int[taille] ;         // Le tableau d'entiers à trier 
     static final int borne = 10 * taille ;                  // Valeur maximale dans le tableau
 
-    static final ExecutorService executorService = Executors.newFixedThreadPool(4);
-    static final CompletionService<Void> completionService = new ExecutorCompletionService<>(executorService);
+    static CompletionService<Void> completionService;
     static final AtomicInteger tasks = new AtomicInteger();
 
     private static void echangerElements(int[] t, int m, int n) {
@@ -49,30 +49,30 @@ public class TriRapide {
     }
 
     private static void parallelTrierRapidement(int[] t, int début, int fin) {
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        completionService = new ExecutorCompletionService<>(executorService);
         tasks.set(0);
         _parallelTrierRapidement(t, début, fin);
 
         while (tasks.addAndGet(-1) > 0) {
-            //System.out.println("while1: " + tasks.get());
             try {
                 completionService.take();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            //System.out.println("while2: " + tasks.get());
         }
 
-        System.out.println("fini: " + tasks.get());
         executorService.shutdown();
+        completionService = null;
     }
 
     private static void _parallelTrierRapidement(int[] t, int début, int fin) {
         if (début < fin) {                             // S'il y a un seul élément, il n'y a rien à faire!
             int p = partitionner(t, début, fin) ;
 
-            if ((début-p) > 1000 && (début-p) > taille / 100) {
+            int l = p - 1 - début;
+            if (l > 1000 && l > taille / 100) {
                 tasks.addAndGet(2);
-                //System.out.println(tasks.get());
                 completionService.submit(() -> {
                     _parallelTrierRapidement(t, début, p - 1);
                 }, null);
@@ -115,24 +115,11 @@ public class TriRapide {
         System.out.print("Tableau trié : ") ; 
         afficher(tableau, 0, taille -1) ;                         // Affiche le tableau obtenu
         System.out.println("obtenu en " + duréeDuTri + " millisecondes.") ;
-/*        List<Integer> sortedList =  Arrays.stream(tableau).boxed().collect(Collectors.toList());
-        Collections.sort(sortedList);*/
-/*        System.out.println(sortedList);
-        System.out.print("[");
-        for (int i = 0 ; i < tableau.length ; i++) {
-            System.out.print(tableau[i] + ", ") ;
-        }
-        System.out.print("\n") ;*/
 
-/*        boolean sorted = true;
-        for (int i = 0 ; i < tableau.length ; i++) {
-            if (tableau[i] != sortedList.get(i)) {
-                sorted = false;
-                break;
-            }
-        }
+        int[] tableauTrié = Arrays.copyOf(tableau, tableau.length);
+        Arrays.sort(tableauTrié);
 
-        System.out.println("est trié: " + sorted);*/
+        System.out.println("est trié: " + Arrays.equals(tableau, tableauTrié));
     }
 }
 

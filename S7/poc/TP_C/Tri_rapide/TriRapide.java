@@ -33,13 +33,6 @@ public class TriRapide {
         return place ;
     }
 
-    private static void trierRapidement(int[] t, int début, int fin) {
-        if (début < fin) {                             // S'il y a un seul élément, il n'y a rien à faire!
-            parallelTrierRapidement(t, début, fin);
-            //seqTrierRapidement(t, début, fin);
-        }
-    }
-
     private static void seqTrierRapidement(int[] t, int début, int fin) {
         if (début < fin) {                             // S'il y a un seul élément, il n'y a rien à faire!
             int p = partitionner(t, début, fin) ;
@@ -105,21 +98,31 @@ public class TriRapide {
         System.out.print("Tableau initial : ") ;
         afficher(tableau, 0, taille -1) ;                         // Affiche le tableau à trier
 
-        System.out.println("Démarrage du tri rapide.") ;
+        int[] tableauTriéSeq = Arrays.copyOf(tableau, tableau.length);
+        System.out.println("Démarrage du tri rapide séquenciel.") ;
         long débutDuTri = System.nanoTime();
-
-        trierRapidement(tableau, 0, taille-1) ;                   // Tri du tableau
-
+        seqTrierRapidement(tableauTriéSeq, 0, taille-1); ;                   // Tri du tableau
         long finDuTri = System.nanoTime();
-        long duréeDuTri = (finDuTri - débutDuTri) / 1_000_000 ;
+        long duréeDuTriSeq = (finDuTri - débutDuTri) / 1_000_000 ;
         System.out.print("Tableau trié : ") ; 
-        afficher(tableau, 0, taille -1) ;                         // Affiche le tableau obtenu
-        System.out.println("obtenu en " + duréeDuTri + " millisecondes.") ;
+        afficher(tableauTriéSeq, 0, taille -1) ;                         // Affiche le tableau obtenu
+        System.out.println("obtenu en " + duréeDuTriSeq + " millisecondes.") ;
+
+        int[] tableauTriéParal = Arrays.copyOf(tableau, tableau.length);
+        System.out.println("Démarrage du tri rapide parallèle.") ;
+        débutDuTri = System.nanoTime();
+        parallelTrierRapidement(tableauTriéParal, 0, taille-1); ;                   // Tri du tableau
+        finDuTri = System.nanoTime();
+        long duréeDuTriParal = (finDuTri - débutDuTri) / 1_000_000 ;
+        System.out.print("Tableau trié : ") ;
+        afficher(tableauTriéParal, 0, taille -1) ;                         // Affiche le tableau obtenu
+        System.out.println("obtenu en " + duréeDuTriParal + " millisecondes.") ;
 
         int[] tableauTrié = Arrays.copyOf(tableau, tableau.length);
         Arrays.sort(tableauTrié);
 
-        System.out.println("est trié: " + Arrays.equals(tableau, tableauTrié));
+        System.out.println("est trié: " + Arrays.equals(tableauTrié, tableauTriéParal));
+        System.out.println("gain: " + duréeDuTriSeq / duréeDuTriParal);
     }
 }
 

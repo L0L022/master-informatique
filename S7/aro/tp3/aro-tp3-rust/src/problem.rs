@@ -8,7 +8,7 @@ use std::{ptr, str::FromStr};
 #[derive(Debug, Clone, Copy)]
 pub struct Initial {
   width: u32,
-  something: f64,
+  cost: f64,
 }
 
 #[derive(Debug)]
@@ -33,7 +33,7 @@ struct SolveData {
 
 #[derive(Debug)]
 pub struct Solution {
-  initial: Initial,
+  costs: Vec<f64>,
   iterations: usize,
   objective: f64,
   primals: Vec<f64>,
@@ -41,39 +41,45 @@ pub struct Solution {
 }
 
 impl Problem {
-  pub fn solve(&self) -> Option<Solution> {
-    self
-      .initials
-      .iter()
-      .filter_map(|i| self.solve_initial(i).ok())
-      .min_by(|l, r| l.objective.partial_cmp(&r.objective).unwrap())
-  }
-
-  fn solve_initial(&self, initial: &Initial) -> Fallible<Solution> {
+  pub fn solve(&self) -> Fallible<Solution> {
     let mut matrix = Matrix::new(self.finals.len());
+    let mut costs = Vec::new();
 
-    for i in 1..=self.finals.len() {
-      matrix.push_signle_row(i, f64::from(initial.width / self.finals[i - 1].width))
+    for initial in &self.initials {
+      for i in 1..=self.finals.len() {
+        matrix.push_signle_row(i, f64::from(initial.width / self.finals[i - 1].width));
+        costs.push(initial.cost);
+      }
     }
 
     let mut data = SolveData::default();
 
     let mut iterations = 0;
     loop {
-      self.solve_cut(&matrix, &mut data)?;
-      let obj = self.solve_knapsack(initial.width, &mut data)?;
+      self.solve_cut(&costs[..], &matrix, &mut data)?;
 
-      if obj - 0.000000001 < 1.0 {
+      let mut taken = false;
+      for initial in &self.initials {
+        let obj = self.solve_knapsack(initial.width, &mut data)?;
+
+        if obj - 0.000000000001 < initial.cost {
+          continue;
+        }
+
+        matrix.push(&data.pattern[..]);
+        costs.push(initial.cost);
+        taken = true;
+      }
+
+      if !taken {
         break;
       }
 
-      matrix.push(&data.pattern[..]);
       iterations += 1;
     }
 
-    dbg!(iterations);
     Ok(Solution {
-      initial: *initial,
+      costs,
       iterations,
       objective: data.objective,
       primals: data.primals,
@@ -81,7 +87,7 @@ impl Problem {
     })
   }
 
-  fn solve_cut(&self, matrix: &Matrix, data: &mut SolveData) -> Fallible<()> {
+  fn solve_cut(&self, costs: &[f64], matrix: &Matrix, data: &mut SolveData) -> Fallible<()> {
     unsafe {
       use glpk::*;
       glp_init_env();
@@ -102,7 +108,7 @@ impl Problem {
       glp_add_cols(lp, columns);
       for column in 1..=columns {
         glp_set_col_bnds(lp, column, GLP_LO, 0.0, 0.0);
-        glp_set_obj_coef(lp, column, 1.0);
+        glp_set_obj_coef(lp, column, costs[column as usize - 1]);
       }
 
       matrix.glp_load_matrix(lp);
@@ -196,8 +202,8 @@ impl FromStr for Problem {
       if line == "finals" {
         break;
       }
-      let (width, something) = scan_fmt!(line, "{} {}", u32, f64)?;
-      initials.push(Initial { width, something });
+      let (width, cost) = scan_fmt!(line, "{} {}", u32, f64)?;
+      initials.push(Initial { width, cost });
     }
 
     let mut finals = Vec::new();

@@ -26,7 +26,7 @@ impl TerminalOutput {
 }
 
 unsafe extern "C" fn term_hook(info: *mut c_void, s: *const c_char) -> c_int {
-  let string = &mut (*info.cast::<TerminalOutput>()).0;
+  let string = &mut (*(info as *mut TerminalOutput)).0;
   string.push_str(&CStr::from_ptr(s).to_string_lossy().into_owned());
   1
 }

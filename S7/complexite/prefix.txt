@@ -1,0 +1,18 @@
+0 a # r qa
+0 b # r qb
+0 * * * halt-accept
+
+qa # _ r qva
+qa * * r qa
+
+qb # _ r qvb
+qb * * r qb
+
+qva a # l qr
+qva * * * halt-reject
+
+qvb b # l qr
+qvb * * * halt-reject
+
+qr # * r 0
+qr * * l qr

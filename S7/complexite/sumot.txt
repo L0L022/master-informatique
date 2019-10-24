@@ -1,0 +1,32 @@
+prep * * l qdiese
+
+qdiese * # r 0
+
+0 # * l qr1
+0 # _ r qloic
+0 * * r 0
+
+qloic _ * l qr1
+qloic * # l 0
+
+qr1 # _ r begin
+qr1 * * l qr1
+
+begin a # r qa
+begin b # r qb
+begin * * * halt-accept
+
+qa # _ r qva
+qa * * r qa
+
+qb # _ r qvb
+qb * * r qb
+
+qva a # l qr2
+qva * * * halt-reject
+
+qvb b # l qr2
+qvb * * * halt-reject
+
+qr2 # * r begin
+qr2 * * l qr2

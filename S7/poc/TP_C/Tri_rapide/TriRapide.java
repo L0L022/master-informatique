@@ -7,9 +7,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class TriRapide {
-    static final int taille = 1_000_000_00 ;                   // Longueur du tableau à trier
-    static final int [] tableau = new int[taille] ;         // Le tableau d'entiers à trier 
+    static final int taille = 83451556 ;                   // Longueur du tableau à trier
+    static final int [] tableau = new int[taille] ;         // Le tableau d'entiers à trier
     static final int borne = 10 * taille ;                  // Valeur maximale dans le tableau
+    static double P = 1.0;
 
     static CompletionService<Void> completionService;
     static final AtomicInteger tasks = new AtomicInteger();
@@ -47,7 +48,7 @@ public class TriRapide {
         tasks.set(0);
         _parallelTrierRapidement(t, début, fin);
 
-        while (tasks.addAndGet(-1) > 0) {
+        while (tasks.getAndAdd(-1) > 0) {
             try {
                 completionService.take();
             } catch (InterruptedException e) {
@@ -64,7 +65,8 @@ public class TriRapide {
             int p = partitionner(t, début, fin) ;
 
             int l = p - 1 - début;
-            if (l > 1000 && l > taille / 100) {
+            //if (l > 1000 && l > taille / 100) {
+            if (l > (int)(P * taille)) {
                 tasks.addAndGet(2);
                 completionService.submit(() -> {
                     _parallelTrierRapidement(t, début, p - 1);
@@ -108,7 +110,7 @@ public class TriRapide {
         afficher(tableauTriéSeq, 0, taille -1) ;                         // Affiche le tableau obtenu
         System.out.println("obtenu en " + duréeDuTriSeq + " millisecondes.") ;
 
-        int[] tableauTriéParal = Arrays.copyOf(tableau, tableau.length);
+        /*int[] tableauTriéParal = Arrays.copyOf(tableau, tableau.length);
         System.out.println("Démarrage du tri rapide parallèle.") ;
         débutDuTri = System.nanoTime();
         parallelTrierRapidement(tableauTriéParal, 0, taille-1); ;                   // Tri du tableau
@@ -118,11 +120,35 @@ public class TriRapide {
         afficher(tableauTriéParal, 0, taille -1) ;                         // Affiche le tableau obtenu
         System.out.println("obtenu en " + duréeDuTriParal + " millisecondes.") ;
 
+        System.out.println("Vérification des tableaux...");
         int[] tableauTrié = Arrays.copyOf(tableau, tableau.length);
         Arrays.sort(tableauTrié);
 
-        System.out.println("est trié: " + Arrays.equals(tableauTrié, tableauTriéParal));
-        System.out.println("gain: " + duréeDuTriSeq / duréeDuTriParal);
+        System.out.println("est-ce que séquenciel est trié: " + Arrays.equals(tableauTrié, tableauTriéSeq));
+        System.out.println("est-ce que parallèle est trié: " + Arrays.equals(tableauTrié, tableauTriéParal));
+        System.out.println("gain: " + (double)duréeDuTriSeq / duréeDuTriParal);*/
+
+        for (double p = 1.0; p > 0.0; p -= 0.1) {
+            P = p;
+            System.out.println("______________ P = " + P);
+            double gain_sum = 0.0;
+            int total = 10;
+            for (int i = 0; i < total; ++i) {
+                int[] tableauTriéParal = Arrays.copyOf(tableau, tableau.length);
+                System.out.println("Démarrage du tri rapide parallèle.");
+                débutDuTri = System.nanoTime();
+                parallelTrierRapidement(tableauTriéParal, 0, taille - 1);
+                ;                   // Tri du tableau
+                finDuTri = System.nanoTime();
+                long duréeDuTriParal = (finDuTri - débutDuTri) / 1_000_000;
+                System.out.print("Tableau trié : ");
+                afficher(tableauTriéParal, 0, taille - 1);                         // Affiche le tableau obtenu
+                System.out.println("obtenu en " + duréeDuTriParal + " millisecondes.");
+                System.out.println("gain: " + (double) duréeDuTriSeq / duréeDuTriParal);
+                gain_sum += (double) duréeDuTriSeq / duréeDuTriParal;
+            }
+            System.out.println("______________ P = " + P + " gain = " + gain_sum/total);
+        }
     }
 }
 

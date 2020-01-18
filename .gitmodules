@@ -1,0 +1,9 @@
+[submodule "S8/kuriputo"]
+	path = S8/kuriputo
+	url = git@gitlab.com:winnies/berserkers/kuriputo.git
+[submodule "S8/gurafikku"]
+	path = S8/gurafikku
+	url = git@gitlab.com:winnies/berserkers/gurafikku.git
+[submodule "S8/maxi-imperial-phototator-2000"]
+	path = S8/maxi-imperial-phototator-2000
+	url = git@gitlab.com:winnies/gigue/maxi-imperial-phototator-2000.git

@@ -7,3 +7,12 @@
 [submodule "S8/maxi-imperial-phototator-2000"]
 	path = S8/maxi-imperial-phototator-2000
 	url = git@gitlab.com:winnies/gigue/maxi-imperial-phototator-2000.git
+[submodule "S7/gl/gl-project-1"]
+	path = S7/gl/gl-project-1
+	url = git@gitlab.com:winnies/les-bonnes-gens/gl-project-1.git
+[submodule "S7/gl/gl-project-2"]
+	path = S7/gl/gl-project-2
+	url = git@gitlab.com:winnies/les-bonnes-gens/gl-project-2.git
+[submodule "S7/reseaux/el-tunel"]
+	path = S7/reseaux/el-tunel
+	url = git@gitlab.com:winnies/lacoloc/el-tunel.git

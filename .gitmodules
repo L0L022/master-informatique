@@ -16,3 +16,6 @@
 [submodule "S7/reseaux/el-tunel"]
 	path = S7/reseaux/el-tunel
 	url = git@gitlab.com:winnies/lacoloc/el-tunel.git
+[submodule "S8/puroba"]
+	path = S8/puroba
+	url = git@gitlab.com:winnies/berserkers/puroba.git
